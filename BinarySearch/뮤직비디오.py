@@ -1,4 +1,3 @@
-
 # 9 3 
 # 123456789
 
@@ -19,7 +18,7 @@ def Count(capacity):
     sum = 0
     for x in minute:
         if sum + x > capacity:
-            # 더이상 저장할수없어서 용량이 초과함
+            # 더이상 저장할수 없어서 용량이 초과함
             # 새로운 dvd 필요함
             cnt +=1
             # 새로운 dvd에 x곡을 저장해야함, 새롭게 x로 초기화 
@@ -42,15 +41,20 @@ rt = sum(minute)
 res=0
 # rt = all_minute
 
+# 노래 중 가장 큰 분을 가지는걸 찾아야함
+max_minute = max(minute)
 
 
 while lt<= rt :
     mid = (lt+rt // 2)
+    
+    
     #  원소들을 더해가면서 <= mid
     # 필요한 dvd개수가 M 이하여야만 한다 
     # 주의 : 용량이 3개 짜리인데 2가 리턴되어서 와도 답이 될수있음 , 2장만에 저장이 되면 3장만에 되는것임
     #if Count(mid) ==  M:
-    if Count(mid) <=  M:
+    # 반례 : mid 가 max보다는 크거나 같아야한다 ,가장 긴노래보다 dvd 용량이 크거나 같아야한다.  DVD 하나의 용량은 최소한 가장 긴 노래를 담을 수 있는 용량을 가지고 있어야 한다.   하나는 무조건 들어가야하므로
+    if mid>=max_minute and Count(mid) <=  M:
         res = mid
         rt = mid-1
     # if 더한 묵음이 > M :
